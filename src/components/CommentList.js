@@ -30,7 +30,7 @@ export default class CommentList extends Component {
         if (!this.state.isOpen) return null;
         else {
             const {comments} = this.props;
-            if (undefined == comments) return;
+            if (undefined == comments) return <p>No comments</p>;
             else {
                 const commentsElements = comments.map(comment => <li key={comment.id}><Comment
                     comment={comment}></Comment></li>);
