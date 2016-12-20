@@ -1,18 +1,19 @@
 import React, {PropTypes} from 'react'
 import Article from './Article'
-import Chart from './Chart'
+import accordionDecorator from '../decorators/accordionDecorator'
 
-export default class ArticleList extends React.Component {
-    state = {
-        openArticleId: null
+class ArticleList extends React.Component {
+    static propTypes = {
+        articles: PropTypes.array.isRequired
     }
+
     render() {
         const {articles} = this.props
         const articleElements = articles.map(article =>
             <li key={article.id}>
                 <Article article={article}
-                         isOpen={this.state.openArticleId == article.id}
-                         onClick={this.toggleOpenArticle(article.id)}
+                         isOpen={this.props.openArticleId == article.id}
+                         onClick={this.props.toggleOpen(article.id)}
                 />
             </li>)
         return (
@@ -22,7 +23,6 @@ export default class ArticleList extends React.Component {
                     {/*some comment*/}
                     {articleElements}
                 </ul>
-                <Chart articles={articles}/>
             </div>
         )
     }
@@ -34,6 +34,4 @@ export default class ArticleList extends React.Component {
     }
 }
 
-ArticleList.propTypes = {
-    articles: PropTypes.array.isRequired
-}
+export default accordionDecorator(ArticleList);

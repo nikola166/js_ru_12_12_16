@@ -16,6 +16,5 @@ export default function toggleOpen(Component) {
                 isOpen: !this.state.isOpen
             })
         }
-
     }
 }
