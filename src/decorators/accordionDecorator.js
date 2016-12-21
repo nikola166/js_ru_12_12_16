@@ -4,6 +4,7 @@ import React from 'react'
 export default function accordionDecorator(Component) {
     return class WrapperComponent extends React.Component {
         state = {
+            //суть декораторов в переисползовании кода, не привязывайся к названиям сущностей. Лучше openItemId
             openArticleId: null,
         }
         render() {
@@ -11,6 +12,7 @@ export default function accordionDecorator(Component) {
         }
 
         toggleOpen = id => ev => {
+            //ок, но я б предпочел в один setState записать
             if (id == this.state.openArticleId) {
                 this.setState({
                     openArticleId: null
