@@ -3,6 +3,7 @@ import {findDOMNode} from 'react-dom'
 import Article from './Article'
 import accordion from '../decorators/accordion'
 import { connect } from 'react-redux'
+import { mapToArray } from '../helpers'
 
 class ArticleList extends React.Component {
     render() {
@@ -28,7 +29,6 @@ class ArticleList extends React.Component {
 
     getArticleRef = (article) => {
         this.article = article
-        console.log('---', findDOMNode(article))
     }
 }
 
@@ -40,7 +40,8 @@ ArticleList.propTypes = {
 
 export default connect(
     (state) => {
-        const { articles, filters } = state
+        const articles = mapToArray(state.articles)
+        const { filters } = state
         const {selected} = filters
         const { from, to } = filters.dateRange
 
