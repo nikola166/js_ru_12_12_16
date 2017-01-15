@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import {addComment} from '../AC/comment'
 
 class NewCommentForm extends Component {
     static propTypes = {
@@ -18,7 +19,7 @@ class NewCommentForm extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault()
-        this.props.addComment(this.state)
+        store.dispatch(addComment(this.state, this.props.articleId));
         this.setState({
             user: '',
             text: ''

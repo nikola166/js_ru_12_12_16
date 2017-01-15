@@ -29,7 +29,7 @@ class CommentList extends Component {
     getBody() {
         const { comments, isOpen } = this.props
         if (!isOpen) return null
-        const form = <NewCommentForm addComment={(comment) => console.log(comment)} />
+        const form = <NewCommentForm articleId = {this.props.articleId}/>
         if (!comments.length) return <div><p>No comments yet</p>{form}</div>
 
         const commentItems = comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)
