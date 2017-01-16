@@ -19,6 +19,7 @@ export default (commentsState = defaultState, action) => {
             // Почему-то не добавлялся
             //const newComment = new CommentModel(action.payload.comment)
             //commentsState.set(newComment.id, newComment);
+            //вся идея с иммутабельными данными - ты не изменяешь состояние объекта, а создаешь новый. commentsState.set создаст новый объект и его нужно будет вернуть. А у тебя он просто теряется
 
             // Добавляем в список коментарией
             let newCommentsState = mapToArray(commentsState);
