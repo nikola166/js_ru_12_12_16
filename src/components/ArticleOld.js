@@ -1,18 +1,12 @@
-import React, { Component } from 'react'
+import React, { PropTypes } from 'react'
+import CommentList from './CommentList'
+import toggleOpen from '../mixins/toggleOpen'
 
-export default class Article extends Component {
-    state = {
-        isOpen: false
-    }
-
-/*
-    constructor() {
-        super()
-        this.state = {
-            isOpen: false
-        }
-    }
-*/
+export default React.createClass({
+    mixins: [toggleOpen],
+    propTypes: {
+        article: PropTypes.object.isRequired
+    },
 
     render() {
         const { article } = this.props
@@ -22,20 +16,15 @@ export default class Article extends Component {
                 {this.getBody()}
             </div>
         )
-    }
-
-    toggleOpen = () => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
-
+    },
     getBody() {
         if (!this.state.isOpen) return null
         return (
             <section>
                 {this.props.article.text}
+                <CommentList comments = {this.props.article.comments} />
             </section>
         )
     }
-}
+
+})
