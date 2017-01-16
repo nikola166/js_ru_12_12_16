@@ -23,7 +23,9 @@ export default (articlesState = defaultState, action) => {
         case ADD_COMMENT:
             // Добавляем в список коментарий
             let newArticleModel = articlesState.get(payload.articleId);
+            //обрати внимание, comments - обычный массив, значит ты мутируеш стейт
             newArticleModel.comments.push(payload.comment.id);
+            //а вот эта строчка не делает вообще ничего, ты создаешь новый объект и сразу его теряешь
             articlesState.set(articlesState.id, newArticleModel);
             break;
     }
