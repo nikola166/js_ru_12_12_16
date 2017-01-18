@@ -53,6 +53,7 @@ class CommentList extends Component {
 
         const commentItems = comments.map(comment => {
             // Если я не проверяю на undefined то падает с ошибкой. У меня почему-то в comments до загрузки находится массив с undefined до загрузки коментариев
+            //props.article.comments - массив с id-шниками, когда делаешь .map - превращаешь его в массив с комментами, но для каждого id storeState.comments.entities.get(id) === undefined
             if (comment != undefined) return <li key={comment.id}><Comment comment={comment}/></li>
         });
 
