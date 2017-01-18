@@ -1,5 +1,5 @@
 import { INCREMENT, DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE,
-    START, SUCCESS, FAIL } from '../constants'
+    START, SUCCESS, FAIL, LOAD_COMMENTS } from '../constants'
 import $ from 'jquery'
 
 export function increment() {
@@ -50,5 +50,31 @@ export function loadArticleById(id) {
                 payload: { id },
                 error
             }))
+    }
+}
+
+// Функция загрузки комментариев к статье
+export function loadCommentByArticleId(articleId) {
+    return (dispatch, getState) => {
+        // Если у нас комментарии уже загружены то не загружаем
+        if (getState().comments.loaded.indexOf(articleId) != -1) return null
+
+        dispatch({
+            type: LOAD_COMMENTS + START,
+            payload: { articleId }
+        })
+        setTimeout(() => {
+            $.get(`/api/comment?article=${articleId}`)
+                .done(response => dispatch({
+                    type: LOAD_COMMENTS + SUCCESS,
+                    payload: {articleId},
+                    response
+                }))
+                .fail(error => dispatch({
+                    type: LOAD_COMMENTS + FAIL,
+                    payload: {articleId},
+                    error
+                }))
+        }, 1000);
     }
 }

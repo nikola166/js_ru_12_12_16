@@ -6,7 +6,7 @@ import api from '../middlewares/api'
 import thunk from 'redux-thunk'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const enhancer = composeEnhancers(applyMiddleware(thunk, randomId, api, logger))
+const enhancer = composeEnhancers(applyMiddleware(thunk, randomId, api))
 
 const store = createStore(reducer, {}, enhancer)
 //not for prod

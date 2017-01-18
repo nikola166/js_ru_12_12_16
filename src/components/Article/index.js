@@ -16,18 +16,6 @@ class Article extends Component {
         if (!this.props.isOpen && nextProps.isOpen) nextProps.loadArticleById(nextProps.article.id)
     }
 
-    componentDidMount() {
-//        console.log('---', this.refs.container)
-    }
-    /*
-     shouldComponentUpdate(nextProps, nextState) {
-     return this.props.isOpen != nextProps.isOpen
-     }
-     */
-
-    componentWillUpdate() {
-    }
-
     render() {
         const { article, onClick } = this.props
         return (
