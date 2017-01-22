@@ -11,7 +11,7 @@ const CommentModel = Record({
 const DefaultReducerState = Record({
     error: null,
     pageCount: 0,
-    //вот эта информация лишняя, ты можешь брать ее из роутера. По сути сейчас у тебя два источника истины, а это всегда плохо
+    //вот эта информация лишняя, тебе следовало вынести это в параметры роута
     currentPage: null,
     loadingPage: [],
     entities: new OrderedMap({})
