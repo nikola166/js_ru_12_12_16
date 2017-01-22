@@ -11,11 +11,12 @@ const CommentModel = Record({
 const DefaultReducerState = Record({
     error: null,
     pageCount: 0,
+    //вот эта информация лишняя, ты можешь брать ее из роутера. По сути сейчас у тебя два источника истины, а это всегда плохо
     currentPage: null,
     loadingPage: [],
     entities: new OrderedMap({})
 })
-
+//так тоже можно, но я не вижу смысла выносить в отдельный редюсер, ведь по сути это такие же комменты
 export default (state = new DefaultReducerState({}), action) => {
     const { type, payload, response } = action
 
