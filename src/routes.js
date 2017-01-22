@@ -14,6 +14,7 @@ export default (
                 <Route path=":id" component={Article} />
             </Route>
             <Route path="filters" component={Filters}/>
+            {/*задача была сделать /comments/:page*/}
             <Route path="comments" component={Comments}/>
             <Route path="*" component={NotFound} />
         </Route>
