@@ -1,5 +1,5 @@
 import { INCREMENT, DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE, LOAD_ARTICLE_COMMENTS,
-    START, SUCCESS, FAIL } from '../constants'
+    START, SUCCESS, FAIL, LOAD_COMMENTS, SHOW_COMMENTS } from '../constants'
 import $ from 'jquery'
 
 export function increment() {
@@ -58,5 +58,20 @@ export function loadArticleComments(articleId) {
         type: LOAD_ARTICLE_COMMENTS,
         payload: { articleId },
         callAPI: `/api/comment?article=${articleId}`
+    }
+}
+
+// Загрузка всех коментариев используя пагинацию
+export function loadComments(limit, offset, selected) {
+    return {
+        type: LOAD_COMMENTS,
+        payload: { limit, offset, selected },
+        callAPI: `/api/comment?limit=${limit}&offset=${offset}`
+    }
+}
+export function showCommentsFromLoaded(limit, offset, selected) {
+    return {
+        type: SHOW_COMMENTS,
+        payload: { limit, offset, selected }
     }
 }
