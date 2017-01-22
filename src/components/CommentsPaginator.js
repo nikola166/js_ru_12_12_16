@@ -41,10 +41,11 @@ class CommentsPaginator extends Component {
     loadCommentsFromServer(offset, selected) {
         this.props.loadComments(this.props.perPage, offset, selected);
     }
-
+    //Я предпочитаю не подвязываться на взаимодействие - это императивно программирование. Попробуй лучше декларативно в описать загрузку в том месте, где ты эти комменты будешь показывать, а здесь по клику просто делай переход на нужную страницу(с помощью роутера)
     handlePageClick = (data) => {
         let selected = data.selected;
         let offset = Math.ceil(selected * this.props.perPage);
+        //можно, но все же лучше принимать это решение на уровне бизнес-логики(в AC), чем вьюхи(в компоненте)
         if (this.props.loadingPage.indexOf(selected) == -1) {
             this.loadCommentsFromServer(offset, selected);
         } else {
